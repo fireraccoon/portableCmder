@@ -8,7 +8,6 @@ unalias=alias /d $1
 
 winit=alias /reload $*
 
-gs=git status
 
 
 
@@ -80,3 +79,4 @@ cmconfig=cd /d C:\Users\perrjean\Desktop\cmder\config
 cdlog=cd /D C:\Users\perrjean\Desktop\LAV2014_ANA_LOG  
 cdlgp=cd /D U:\lav2014\LogProdDaily\  
 emacs=runemacs.exe $*  
+gs=bash -i -c "gs"  
