@@ -1,5 +1,56 @@
 ;; EMACS CONFIG FILE
 
+
+
+;; Initial setup
+
+
+;(package-initialize)
+
+;; no useless GUI elements
+(mapc (lambda (mode) (when (fboundp mode) (apply mode '(-1))))
+      '(tool-bar-mode menu-bar-mode scroll-bar-mode))
+
+;; no bell
+(setq ring-bell-function 'ignore
+      inhibit-startup-screen t
+      indent-tabs-mode nil)
+
+
+
+;; initial package setup
+(push "~/use-package" load-path)
+(require 'use-package)
+(require 'package)
+(mapc (lambda(p) (push p package-archives))
+      '(
+          ("melpa" . "http://melpa.org/packages/")
+      )
+)
+(package-refresh-contents)
+(package-initialize)
+
+
+;; POWERLINE
+(use-package powerline
+  :init (powerline-default-theme)
+  :ensure t)
+
+
+
+;; MOE Theme
+(use-package moe-theme
+  :ensure t)
+(moe-dark)
+
+
+
+
+
+
+
+
+
 ;; Package Management
 (when (>= emacs-major-version 24)
   (require 'package)
@@ -19,21 +70,10 @@
 
 
 
-
+;
 
 
 ;; APPEARANCE
-
-;; THEME
-;;customize theme
-(add-to-list 'custom-theme-load-path "~/.emacs.d/moe-theme.el/")
-(add-to-list 'load-path "~/.emacs.d/moe-theme.el/")
-(require 'moe-theme)
-;; Choose what you like, (moe-light) or (moe-dark)
-(moe-dark)
-
-
-
 
 
 
@@ -71,4 +111,21 @@
 ;; Line numbers
 (global-linum-mode t)
 
+
+
+
+
+
+
+
+
+
+
+
+;; bury *compile* buffer instead of kill it
+(defadvice kill-buffer (around kill-buffer-around-advice activate)
+  (let ((buffer-to-kill (ad-get-arg 0)))
+    (if (equal buffer-to-kill "*Compile-Log*")
+        (bury-buffer)
+      ad-do-it)))
 

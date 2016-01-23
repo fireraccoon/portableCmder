@@ -37,3 +37,6 @@ local/
 
 
 
+.emacs.d/
+.gnupg/
+use-package/
