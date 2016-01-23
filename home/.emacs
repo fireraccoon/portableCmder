@@ -33,6 +33,7 @@
 
 ;; POWERLINE
 (use-package powerline
+ ;; :init (powerline-nano-theme)
   :init (powerline-default-theme)
   :ensure t)
 
@@ -45,41 +46,66 @@
 
 
 
+;; DRAG STUFF
+(use-package drag-stuff
+  :init (drag-stuff-global-mode)
+  :ensure t)
+
+
+(use-package rainbow-delimiters
+  :init (add-hook 'prog-mode-hook 'rainbow-delimiters-mode)
+  :ensure t)
+
+;; ace-jump
+(use-package ace-jump-mode
+  :init (define-key global-map (kbd "C-c c") 'ace-jump-mode)
+  :ensure t)
+
+;; ace-window
+(use-package ace-window
+  :ensure t)
+(global-set-key (kbd "M-p") 'ace-window)
+
+;(use-package minimap
+;  :init (drag-stuff-global-mode)
+;  :ensure t)
 
 
 
+;; lua mode
+(use-package lua-mode
+  :ensure t)
+
+;; JDEE (Java)
+(use-package jdee
+  :ensure t)
+
+;; auto complete
+(use-package auto-complete
+  :ensure t)
+
+;; PACKAGE END
+
+;; IDO
+(setq ido-enable-flex-matching t)
+(setq ido-everywhere t)
+(ido-mode 1)
+
+(setq ido-create-new-buffer 'always) ; Create buffer when C-x b buffer does not existe
 
 
 
-;; Package Management
-(when (>= emacs-major-version 24)
-  (require 'package)
-  (add-to-list
-   'package-archives
-   '("melpa" . "http://melpa.org/packages/")
-   t)
-  (package-initialize))
-
-;; PACKAGES BEGIN
-
-;; Powerline
-(require 'powerline)
-(powerline-default-theme)
-
-;; PACKAGES END
-
-
-
-;
 
 
 ;; APPEARANCE
 
+;; Line and column numbers
+(global-linum-mode t)
+(column-number-mode 1)
+(global-hl-line-mode 1) ; turn on highlighting current line
 
 
-
-
-
+;; fonts
 
 
 
@@ -100,6 +126,8 @@
   version-control t)
 (setq make-backup-files nil) ;; Set no backup
 
+(setq make-backup-files nil) ; stop creating those backup~ files
+(setq auto-save-default nil) ; stop creating those #auto-save# files
 
 ;; Delete GUI
 (when window-system
@@ -108,8 +136,6 @@
   (menu-bar-mode 1)
   (scroll-bar-mode -1))
 
-;; Line numbers
-(global-linum-mode t)
 
 
 
