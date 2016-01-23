@@ -1,0 +1,82 @@
+e.=explorer .
+gl=git log --oneline --all --graph --decorate  $*
+ls=ls --show-control-chars -F --color $*
+pwd=cd $*
+clear=cls $*
+history=cat %CMDER_ROOT%\config\.history $*
+unalias=alias /d $1
+
+winit=alias /reload $*
+
+gs=git status
+
+
+
+
+
+
+
+
+
+
+
+
+ll=ls -l -a --show-control-chars -F --color $*
+l1=ls -1
+more=less -n
+m=less -n $*
+
+
+op=open $*
+opd=open .
+
+home=cd %home%
+
+..=cd ..
+
+
+
+cvim=vim $* -new_console:s40V:P:"<Solarized Git>"
+
+py=python
+
+
+cbash=bash $* -new_console:s
+
+
+
+
+
+
+
+
+
+
+
+#= Google
+gg="%ProgramFiles(X86)%\Google\Chrome\Application\chrome.exe" $*
+
+
+
+
+
+#= Quitter
+x=exit
+
+
+
+
+
+
+cmconfig=cd /d C:\Users\perrjean\Desktop\cmder\config
+
+
+
+
+
+#=Remove Comment Alias
+#=#
+
+cdlog=cd /D C:\Users\perrjean\Desktop\LAV2014_ANA_LOG  
+cdlgp=cd /D U:\lav2014\LogProdDaily\  
+emacs=runemacs.exe $*  

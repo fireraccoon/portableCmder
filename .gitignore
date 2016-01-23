@@ -1,0 +1,39 @@
+# Ignore everything
+/*
+/*/
+
+.history
+*.history*
+.bash_history
+
+# But not these files ...
+!.gitignore
+!README.md
+!/config/
+!/home/
+!vendor/conemu-maximus5/ConEmu.xml
+
+# And ignore specifically
+
+
+# Folder view configuration files
+.DS_Store
+Desktop.ini
+
+.*.swp
+
+# Thumbnail cache files
+._*
+Thumbs.db
+
+# Files that might appear on external disks
+.Spotlight-V100
+.Trashes
+
+# Compiled Python files
+*.pyc
+
+local/
+
+
+
