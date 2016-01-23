@@ -23,19 +23,6 @@ echo checking config updates ...
 :: Set Vendor
 @set VENDOR=%CMDER_ROOT%\vendor
 
-
-:: Chocolatey
-@set ChocolateyInstall=%VENDOR%\chocolatey
-@set PATH=%ChocolateyInstall%\bin;%PATH%
-@IF NOT EXIST %ChocolateyInstall% (
-    echo Installing chocolatey ...
-    @md %ChocolateyInstall%
-    :: @powershell.exe -NoProfile -ExecutionPolicy Bypass -Command "& '%HOME%\install_chocolatey.ps1' %*"
-    @powershell.exe -NoProfile -ExecutionPolicy Bypass -Command "$path='%PATH%'; Write-Host $path"
-    echo chocolatey installed
-)
-
-
 :: Common Apps (might need to be manually downloaded
 
 :: Node
