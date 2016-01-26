@@ -92,6 +92,23 @@
   :ensure t)
 (global-set-key [f8] 'neotree-toggle)
 
+
+
+
+
+;; Multiple cursors with sublime like bindings
+(use-package multiple-cursors
+  :ensure t)
+(global-set-key (kbd "C-S-l") 'mc/edit-lines)
+
+(global-set-key (kbd "C-d") 'mc/mark-next-like-this)
+
+
+
+
+
+
+
 ;; PACKAGE END
 
 ;; IDO
@@ -111,6 +128,10 @@
 (global-linum-mode t)
 (column-number-mode 1)
 (global-hl-line-mode 1) ; turn on highlighting current line
+
+(setq cursor-type '(bar . 2)) ;; display cursor as a bar
+
+
 
 
 ;; fonts
@@ -167,9 +188,9 @@
 (define-key isearch-mode-map "\e" 'isearch-abort)   ;; \e seems to work better for terminals
 (global-set-key [escape] 'keyboard-escape-quit)         ;; everywhere else
 
-
-
-
+;; add some CUA
+(cua-mode 1) 
+(global-set-key (kbd "C-z") 'undo)
 
 
 ;; Duplicate Line
@@ -210,6 +231,7 @@
 (global-set-key (kbd "C-c C-d") 'duplicate-line)
 
 
+
 ;; Select Line
 (defun select-current-line ()
   "Select the current line"
@@ -223,10 +245,15 @@
 (global-set-key (kbd "C-c C-k") 'kill-whole-line) 
 
 
+;; join line to next line
+(global-set-key (kbd "C-j")
+            (lambda ()
+                  (interactive)
+                  (join-line -1)))
 
 
 
-;; Empty buffer
+;; Empty buffer (a la sublime)
 (defun xah-new-empty-buffer ()
   "Open a new empty buffer.
 URL `http://ergoemacs.org/emacs/emacs_new_empty_buffer.html'
@@ -238,3 +265,22 @@ Version 2015-06-12"
     (setq buffer-offer-save t)))
 (global-set-key (kbd "C-c C-n") 'xah-new-empty-buffer)
  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+;; PACKAGES TO TRY
+;; -browse-at-remote  
