@@ -76,15 +76,21 @@
 (use-package lua-mode
   :ensure t)
 
-;; JDEE (Java)
-(use-package jdee
-  :ensure t)
 
 ;; auto complete
 (use-package auto-complete
   :init (auto-complete-mode)
   :ensure t)
 (auto-complete-mode)
+
+;; Markdown
+(use-package markdown-mode
+  :ensure t)
+
+;; neotree
+(use-package neotree
+  :ensure t)
+(global-set-key [f8] 'neotree-toggle)
 
 ;; PACKAGE END
 
@@ -138,21 +144,8 @@
   (menu-bar-mode 1)
   (scroll-bar-mode -1))
 
-
-
-
-
-
-
-
-
-
-;; Key bindings
-
-;; Map escape to cancel (like C-g)...
-(define-key isearch-mode-map [escape] 'isearch-abort)   ;; isearch
-(define-key isearch-mode-map "\e" 'isearch-abort)   ;; \e seems to work better for terminals
-(global-set-key [escape] 'keyboard-escape-quit)         ;; everywhere else
+;; Yes & no become y & n
+(defalias 'yes-or-no-p 'y-or-n-p)
 
 
 ;; bury *compile* buffer instead of kill it
@@ -167,7 +160,17 @@
 
 
 
-;; CUSTOM KEY BINDINGS
+;; Key bindings
+
+;; Map escape to cancel (like C-g)...
+(define-key isearch-mode-map [escape] 'isearch-abort)   ;; isearch
+(define-key isearch-mode-map "\e" 'isearch-abort)   ;; \e seems to work better for terminals
+(global-set-key [escape] 'keyboard-escape-quit)         ;; everywhere else
+
+
+
+
+
 
 ;; Duplicate Line
 (defun duplicate-line (arg)
@@ -214,10 +217,24 @@
   (end-of-line) ; move to end of line
   (set-mark (line-beginning-position)))
 
+(global-set-key (kbd "C-c C-l") 'select-current-line)
+
 ;; Delete current line (kill current line)
 (global-set-key (kbd "C-c C-k") 'kill-whole-line) 
-;; Open shell
 
 
 
 
+
+;; Empty buffer
+(defun xah-new-empty-buffer ()
+  "Open a new empty buffer.
+URL `http://ergoemacs.org/emacs/emacs_new_empty_buffer.html'
+Version 2015-06-12"
+  (interactive)
+  (let ((buf (generate-new-buffer "untitled")))
+    (switch-to-buffer buf)
+    (funcall (and initial-major-mode))
+    (setq buffer-offer-save t)))
+(global-set-key (kbd "C-c C-n") 'xah-new-empty-buffer)
+ 
