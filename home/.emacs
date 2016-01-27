@@ -129,12 +129,13 @@
 (column-number-mode 1)
 (global-hl-line-mode 1) ; turn on highlighting current line
 
-(setq cursor-type '(bar . 2)) ;; display cursor as a bar
-
-
-
+(setq-default cursor-type '(bar . 2)) ;; display cursor as a bar
 
 ;; fonts
+(set-face-attribute 'default nil :family "Consolas" :height 125)
+
+
+
 
 
 
