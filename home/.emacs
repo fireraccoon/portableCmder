@@ -104,8 +104,9 @@
 (global-set-key (kbd "C-d") 'mc/mark-next-like-this)
 
 
-
-
+;; Snippet (TEXT MATE COMPATIBLE YAY :D )
+(use-package yasnippet
+  :ensure t)
 
 
 
@@ -134,8 +135,12 @@
 ;; fonts
 (set-face-attribute 'default nil :family "Consolas" :height 125)
 
+;; auto close bracket insertion. New in emacs 24
+(electric-pair-mode 1)
 
-
+(setq electric-pair-pairs '(
+                            (?\{ . ?\})
+                            ) )
 
 
 
@@ -182,6 +187,11 @@
 
 
 
+;; indent using space, always
+(setq-default indent-tabs-mode nil)
+
+
+
 ;; Key bindings
 
 ;; Map escape to cancel (like C-g)...
@@ -193,7 +203,9 @@
 (cua-mode 1) 
 (global-set-key (kbd "C-z") 'undo)
 
-
+;; change font with Ctrl + and Ctrl -
+(global-set-key [C-kp-add] 'text-scale-increase)
+(global-set-key [C-kp-subtract] 'text-scale-decrease)
 ;; Duplicate Line
 (defun duplicate-line (arg)
   "Duplicate current line, leaving point in lower line."
@@ -246,6 +258,7 @@
 (global-set-key (kbd "C-c C-k") 'kill-whole-line) 
 
 
+
 ;; join line to next line
 (global-set-key (kbd "C-j")
             (lambda ()
@@ -271,8 +284,24 @@ Version 2015-06-12"
 
 
 
+;; ENCODING FOR GIRO
+(prefer-coding-system 'utf-8)
 
 
+
+;; save session state when you quit emacs
+;;(desktop-save-mode 1) 
+;; start emacs server so that you can use emacsclient to open new files 
+;; quickly in your one emacs session (which you start after a reboot and
+;; keep open until your next reboot)
+;;(server-start)
+                                        ;
+
+ 
+;; make buffer names unique even if the files have the same names
+(require 'uniquify)
+(setq uniquify-buffer-name-style 'forward)
+ 
 
 
 
